@@ -2,7 +2,7 @@ name: Continuous Delivery
 on:
   push:
     branches:
-    - Main
+    - main
 
 jobs:
   delivery:
@@ -16,7 +16,7 @@ jobs:
         with:
           name: projetozipado.zip
           path: |
-            Main.py
+            main.py
             README.md
 
   deploy:
@@ -28,3 +28,4 @@ jobs:
           name: projetozipado.zip
       - name: Display structure of downloaded files
         run: ls -R
+        
