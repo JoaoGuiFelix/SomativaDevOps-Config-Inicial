@@ -29,29 +29,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build Docker image (no push)
+      - name: Build
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: false   # 👈 importante! no CI não fazemos push
-          tags: ci-test/app:latest
-
-          push: true
+          push: false
           tags: user/app:latest
-
-        discord:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v2
-
-            - name: Run Discord Webhook
-              uses: johnnyhuy/actions-discord-git-webhook@main
-              with:
-                webhook_url: ${{ secrets.WEBHOOK }}
-
-          - uses: actions/checkout@v2
-
-          - name: Run Discord Webhook
-            uses: johnnyhuy/actions-discord-git-webhook@main
-            with:
-              webhook_url: ${{ secrets.WEBHOOK }}
