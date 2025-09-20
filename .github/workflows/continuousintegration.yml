@@ -36,6 +36,9 @@ jobs:
           push: false   # 👈 importante! no CI não fazemos push
           tags: ci-test/app:latest
 
+          push: true
+          tags: user/app:latest
+
         discord:
           runs-on: ubuntu-latest
           steps:
@@ -45,3 +48,10 @@ jobs:
               uses: johnnyhuy/actions-discord-git-webhook@main
               with:
                 webhook_url: ${{ secrets.WEBHOOK }}
+
+          - uses: actions/checkout@v2
+
+          - name: Run Discord Webhook
+            uses: johnnyhuy/actions-discord-git-webhook@main
+            with:
+              webhook_url: ${{ secrets.WEBHOOK }}
