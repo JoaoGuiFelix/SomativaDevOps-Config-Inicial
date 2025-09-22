@@ -50,5 +50,8 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: |
-          pip install pytest pytest-cov pytest-asyncio
-          pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          pip install pytest pytest-cov pytest-asyncio httpx
+          PYTHONPATH=. pytest test/test.py --doctest-modules \
+            --junitxml=junit/test-results.xml \
+            --cov=src --cov-branch --cov-report=xml --cov-report=html --cov-fail-under=80
+      
