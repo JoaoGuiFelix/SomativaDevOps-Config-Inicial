@@ -3,14 +3,13 @@ from src.main import *
 from unittest.mock import patch
 import pytest
 
-def test_root():
-    result = root()
-    yield result
+@pytest.mark.asynicio
+async def test_root():
+    result = await root()
     assert result == {"message" "Hello": "World"}
 
-def read_root():
+@pytest.mark.asynicio
+async def read_root():
     with patch('randon.randint', return_value=28282):
-        result = read_root()
-        yield result
-
+        result =  await read_root()
     assert result == {"teste": True, "num_aleatorio":28282}
